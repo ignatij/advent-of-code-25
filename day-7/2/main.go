@@ -31,6 +31,7 @@ func main() {
 				startY = j
 			}
 		}
+		// set terminal nodes to 1
 		if i == len(matrix)-1 {
 			for j := 0; j < len(matrix[i]); j++ {
 				dp[i][j] = 1
