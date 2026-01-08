@@ -1,6 +1,6 @@
 # Day 11
 
-# Part 1
+# Part 1 – DFS path counting
 
 The input describes a directed graph where each line looks like `you: aaa bbb ccc`. The goal is to count how many distinct routes starting at `you` eventually reach `out`, regardless of length. The solution is to build the graph and run a depth-first search:
 
@@ -10,7 +10,7 @@ The input describes a directed graph where each line looks like `you: aaa bbb cc
 
 The graph is small enough that pure recursion already finishes, but I memoized `node -> number of paths` to avoid recomputing identical suffixes. The cache is keyed only by the node name because the state is stateless in this part.
 
-# Part 2
+# Part 2 – DFS with stateful memoization
 
 The second puzzle keeps the same graph but only counts paths that touch both `"dac"` and `"fft"` before exiting. I managed this part by including two booleans (`seenDac`, `seenFft`) through the recursion:
 

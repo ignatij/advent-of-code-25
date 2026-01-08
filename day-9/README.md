@@ -1,16 +1,17 @@
 # Day 9
 
-# Part 1
+# Part 1 – brute-force rectangle area scan
 
 Every input line is a lattice point that lies on the outline of some axis-aligned rectangle. Because the file is tiny I simply check every pair of points: two corners determine a rectangle whose side lengths are `|x2-x1|+1` by `|y2-y1|+1`, so its area is `(abs(dx)+1)*(abs(dy)+1)`. Track the maximum over all `O(n^2)` pairs and print it. Brute force is fine here and keeps the code trivial.
 
 Eazy.
 
-# Part 2
+# Part 2 – coordinate compression + flood fill + prefix sums
 
 Boy oh boy, I was in for a surprise.
 
 Now we must ignore any rectangle that intersects the walkways traced by the input polygon. Tried with a naive BFS over the entire coordinate range, it blew up because the coordinates can be huge and sparse.
+So I had to rollback and think of another approach.
 
 The fix has three ingredients:
 
@@ -20,4 +21,4 @@ The fix has three ingredients:
 
 This combination keeps the search finite and lets us test each pair of corners in constant time after preprocessing. The pairwise loop is still `O(n^2)`, but now each test simply checks prefix sums rather than attempting another expensive traversal.
 
-This really took a while.
+This really was the hardest challenge up to this point.
